@@ -3,12 +3,19 @@ package com.modularwarfare.common.backpacks;
 import com.modularwarfare.ModularWarfare;
 import com.modularwarfare.client.fpp.basic.configs.BackpackRenderConfig;
 import com.modularwarfare.client.model.ModelBackpack;
+import com.modularwarfare.common.container.ContainerInventoryModified;
+import com.modularwarfare.common.guns.ItemGun;
+import com.modularwarfare.common.guns.OverlayType;
 import com.modularwarfare.common.type.BaseType;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTBase;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
+import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.ItemStackHandler;
 
@@ -21,6 +28,10 @@ public class BackpackType extends BaseType {
 
     public boolean allowSmallerBackpackStorage = false;
     public Integer maxWeaponStorage = null;
+    public int durability = 100;
+    public boolean isAmmoNation = false;
+    public Integer maxAmmunitionStorage;
+    public  boolean isPartsBackpack = false;
 
     @Override
     public void loadExtraValues() {
@@ -28,6 +39,8 @@ public class BackpackType extends BaseType {
             maxStackSize = 1;
         loadBaseValues();
     }
+
+
 
     @Override
     public void reloadModel() {
@@ -69,5 +82,28 @@ public class BackpackType extends BaseType {
         public void deserializeNBT(final NBTBase nbt) {
             CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.readNBT(this.items, null, nbt);
         }
+    }
+
+    public static int getFreeSlot(IItemHandler vestInvent) {
+        int FreeSlot = 0;
+        for(int i=0; i < vestInvent.getSlots(); i++){
+            if(vestInvent.getStackInSlot(i) != null){
+                if(vestInvent.getStackInSlot(i).isEmpty()){
+                    FreeSlot++;
+                }
+            }
+        }
+        return FreeSlot;
+    }
+    public static int getGunSlot(IItemHandler backpackInvent) {
+        int numGuns = 0;
+        for(int i=0; i < backpackInvent.getSlots(); i++){
+            if(backpackInvent.getStackInSlot(i) != null){
+                if(backpackInvent.getStackInSlot(i).getItem() instanceof ItemGun){
+                    numGuns++;
+                }
+            }
+        }
+        return numGuns;
     }
 }

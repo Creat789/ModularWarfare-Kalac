@@ -16,6 +16,8 @@ import com.modularwarfare.common.grenades.GrenadeType;
 import com.modularwarfare.common.grenades.ItemGrenade;
 import com.modularwarfare.common.guns.*;
 import com.modularwarfare.common.textures.TextureType;
+import com.modularwarfare.common.vest.ItemVest;
+import com.modularwarfare.common.vest.VestType;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
@@ -110,6 +112,25 @@ public class ContentTypes {
             if (FMLCommonHandler.instance().getSide() == Side.CLIENT)
                 ((ModelBackpack) (type.model)).config = ModularWarfare.getRenderConfig(type, BackpackRenderConfig.class);
         });
+
+        registerType("vest", VestType.class, (type, reload) -> {
+            ContentTypes.<VestType, ItemVest>assignType(ModularWarfare.vestTypes, ItemVest.factory, (VestType) type, reload);
+
+            if (FMLCommonHandler.instance().getSide() == Side.CLIENT)
+                ((ModelVest) (type.model)).config = ModularWarfare.getRenderConfig(type, VestRenderConfig.class);
+        });
+
+        registerType("overlay", OverlayType.class, (type, reload) -> {
+            ContentTypes.<OverlayType, ItemOverlay>assignType(ModularWarfare.overlayTypes, ItemOverlay.factory, (OverlayType)type, reload);
+        });
+
+        registerType("boxes", BoxType.class, (type, reload) -> {
+            ContentTypes.<BoxType, ItemBox>assignType(ModularWarfare.boxTypes, ItemBox.factory, (BoxType)type, reload);
+        } );
+
+        registerType("parts", PartType.class, (type, reload) -> {
+            ContentTypes.<PartType, ItemPart>assignType(ModularWarfare.partTypes, ItemPart.factory, (PartType)type, reload);
+        } );
 
         registerType("grenades", GrenadeType.class, (type, reload) -> {
             ContentTypes.<GrenadeType, ItemGrenade>assignType(ModularWarfare.grenadeTypes, ItemGrenade.factory, (GrenadeType) type, reload);

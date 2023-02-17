@@ -26,9 +26,12 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import org.lwjgl.input.Mouse;
 
@@ -372,6 +375,30 @@ public class ClientTickHandler extends ForgeEvent {
         if (this.oldCurrentItem != player.inventory.currentItem) {
             this.oldCurrentItem = player.inventory.currentItem;
             this.oldItemStack = player.getHeldItemMainhand();
+        }
+    }
+
+    @SubscribeEvent
+    public void onPlayerLogin(PlayerEvent.PlayerLoggedInEvent e)
+    {
+        EntityPlayer player = e.player;
+            if(!player.world.isRemote)
+            {
+                    TextComponentTranslation prefix = new TextComponentTranslation("ModularWarfare Kalac Version 0.0.1");
+                    prefix.getStyle().setColor(TextFormatting.GOLD);
+                    player.sendMessage(prefix);
+            }
+    }
+
+    @SubscribeEvent
+    public void tickPlayer(TickEvent.PlayerTickEvent event){
+        if(event.phase==TickEvent.Phase.START&&
+                event.player.getHealth()<event.player.getMaxHealth()&&
+                event.player.getFoodStats().getFoodLevel()>=16){
+            if(event.player.getEntityWorld().getWorldTime()%80==30){
+                event.player.heal(1F);
+                event.player.getFoodStats().addExhaustion(6F);
+            }
         }
     }
 }

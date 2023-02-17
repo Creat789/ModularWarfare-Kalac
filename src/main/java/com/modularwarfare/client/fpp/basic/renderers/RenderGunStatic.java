@@ -253,7 +253,6 @@ public class RenderGunStatic extends CustomItemRenderer {
                     float translateZ = 0;
                     float crouchZoom = anim.reloading ? 0f : anim.isReloadState(StateType.Charge) ? 0f : model.config.extra.crouchZoom;
                     float hipRecover = reloadSwitch;
-
                     // Store the staticModel settings as local variables to reduce calls
                     Vector3f customHipRotation = new Vector3f(model.config.aim.rotateHipPosition.x + (model.config.sprint.sprintRotate.x * sprintSwitch * hipRecover), model.config.aim.rotateHipPosition.y + (model.config.sprint.sprintRotate.y * sprintSwitch * hipRecover), model.config.aim.rotateHipPosition.z + (model.config.sprint.sprintRotate.z * sprintSwitch * hipRecover));
                     Vector3f customHipTranslate = new Vector3f(model.config.aim.translateHipPosition.x + (model.config.sprint.sprintTranslate.x * sprintSwitch * hipRecover), (model.config.aim.translateHipPosition.y + 0.04f) + (model.config.sprint.sprintTranslate.y * sprintSwitch * hipRecover), (model.config.aim.translateHipPosition.z - 0.15f) + (model.config.sprint.sprintTranslate.z * sprintSwitch * hipRecover));
@@ -326,6 +325,7 @@ public class RenderGunStatic extends CustomItemRenderer {
                     GlStateManager.rotate(Math.abs(MathHelper.cos(f2 * (float) Math.PI - 0.2F) * f3) * 5.0F, 1.0F, 0.0F, 0.0F);
                     GlStateManager.rotate(f4, 1.0F, 0.0F, 0.0F);
                     prevBobModifier = bobModifier;
+
 
                     // Position calls and apply a special position if player is sprinting or crouching
                     GL11.glRotatef(rotateX, 1F, 0F, 0F); //ROLL LEFT-RIGHT
@@ -499,9 +499,6 @@ public class RenderGunStatic extends CustomItemRenderer {
                 GL11.glEnable(GL11.GL_TEXTURE_2D);
 
                 GL11.glScalef(modelScale, modelScale, modelScale);
-
-                /** FOR BLENDER **/
-                GL11.glTranslatef(3.0f * worldScale, -(-5.37f) * worldScale, -(-0.01f) * worldScale);
 
                 GL11.glTranslatef(model.config.extra.translateAll.x * worldScale, -model.config.extra.translateAll.y * worldScale, -model.config.extra.translateAll.z * worldScale);
 

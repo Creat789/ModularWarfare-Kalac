@@ -57,6 +57,7 @@ import com.modularwarfare.common.particle.EntityBloodFX;
 import com.modularwarfare.common.particle.ParticleExplosion;
 import com.modularwarfare.common.particle.ParticleRocket;
 import com.modularwarfare.common.type.BaseType;
+import com.modularwarfare.common.vest.ItemVest;
 import com.modularwarfare.objects.SoundEntry;
 import com.modularwarfare.raycast.obb.OBBPlayerManager;
 import com.modularwarfare.utility.MWResourcePack;
@@ -359,9 +360,22 @@ public class ClientProxy extends CommonProxy {
         for (ItemSpray itemSpray : ModularWarfare.sprayTypes.values()) {
             ModelLoader.setCustomModelResourceLocation(itemSpray, 0, new ModelResourceLocation(ModularWarfare.MOD_ID + ":" + itemSpray.type.internalName));
         }
+        for (ItemOverlay itemOverlay : ModularWarfare.overlayTypes.values()) {
+            ModelLoader.setCustomModelResourceLocation(itemOverlay, 0, new ModelResourceLocation(ModularWarfare.MOD_ID + ":" + itemOverlay.type.internalName));
+        }
+        for (ItemPart itemPart : ModularWarfare.partTypes.values()) {
+            ModelLoader.setCustomModelResourceLocation(itemPart, 0, new ModelResourceLocation(ModularWarfare.MOD_ID + ":" + itemPart.type.internalName));
+        }
+        for (ItemBox itemBox : ModularWarfare.boxTypes.values()) {
+            ModelLoader.setCustomModelResourceLocation(itemBox, 0, new ModelResourceLocation(ModularWarfare.MOD_ID + ":" + itemBox.type.internalName));
+        }
 
         for (ItemBackpack itemBackpack : ModularWarfare.backpackTypes.values()) {
             ModelLoader.setCustomModelResourceLocation(itemBackpack, 0, new ModelResourceLocation(ModularWarfare.MOD_ID + ":" + itemBackpack.type.internalName));
+        }
+
+        for (ItemVest itemVest : ModularWarfare.vestTypes.values()) {
+            ModelLoader.setCustomModelResourceLocation(itemVest, 0, new ModelResourceLocation(ModularWarfare.MOD_ID + ":" + itemVest.type.internalName));
         }
 
         for (ItemGrenade itemGrenade : ModularWarfare.grenadeTypes.values()) {

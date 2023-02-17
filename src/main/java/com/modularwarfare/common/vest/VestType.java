@@ -1,7 +1,7 @@
 package com.modularwarfare.common.vest;
 
 import com.modularwarfare.ModularWarfare;
-import com.modularwarfare.client.config.VestRenderConfig;
+import com.modularwarfare.client.fpp.basic.configs.VestRenderConfig;
 import com.modularwarfare.client.model.ModelVest;
 import com.modularwarfare.common.type.BaseType;
 import net.minecraft.nbt.NBTBase;

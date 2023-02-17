@@ -1,8 +1,6 @@
 package com.modularwarfare.common.guns;
 
 import com.modularwarfare.common.type.BaseItem;
-import com.modularwarfare.tooltips.LegendaryTooltipsConfig;
-import com.modularwarfare.tooltips.render.TooltipDecor;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;

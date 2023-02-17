@@ -482,12 +482,35 @@ public class ModularWarfare {
                     tabOrder.add(itemAmmo);
                 }
             }
+
             for (ItemBullet itemBullet : bulletTypes.values()) {
                 if (itemBullet.type.contentPack.equals(file.getName())) {
                     event.getRegistry().register(itemBullet);
                     tabOrder.add(itemBullet);
                 }
             }
+
+            for (ItemBox itemBox : boxTypes.values()) {
+                if (itemBox.type.contentPack.equals(file.getName())) {
+                    event.getRegistry().register(itemBox);
+                    tabOrder.add(itemBox);
+                }
+            }
+
+            for (ItemPart itemPart : partTypes.values()) {
+                if (itemPart.type.contentPack.equals(file.getName())) {
+                    event.getRegistry().register(itemPart);
+                    tabOrder.add(itemPart);
+                }
+            }
+
+            for (ItemOverlay itemOverlay : overlayTypes.values()) {
+                if (itemOverlay.type.contentPack.equals(file.getName())) {
+                    event.getRegistry().register(itemOverlay);
+                    tabOrder.add(itemOverlay);
+                }
+            }
+
             for (ItemMWArmor itemArmor : armorTypes.values()) {
                 if (itemArmor.type.contentPack.equals(file.getName())) {
                     event.getRegistry().register(itemArmor);
@@ -526,6 +549,13 @@ public class ModularWarfare {
                 if (itemGrenade.type.contentPack.equals(file.getName())) {
                     event.getRegistry().register(itemGrenade);
                     tabOrder.add(itemGrenade);
+                }
+            }
+
+            for (ItemVest itemVest : vestTypes.values()) {
+                if (itemVest.type.contentPack.equals(file.getName())) {
+                    event.getRegistry().register(itemVest);
+                    tabOrder.add(itemVest);
                 }
             }
 

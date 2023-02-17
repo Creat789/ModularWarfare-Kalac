@@ -3,6 +3,7 @@ package com.modularwarfare.client.gui;
 import com.modularwarfare.ModularWarfare;
 import com.modularwarfare.common.backpacks.ItemBackpack;
 import com.modularwarfare.common.container.ContainerInventoryModified;
+import com.modularwarfare.common.vest.ItemVest;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.renderer.GlStateManager;
@@ -16,17 +17,12 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 
-public class GuiInventoryModified extends InventoryEffectRenderer {
-    public static final ResourceLocation ICONS;
-    public static final ResourceLocation INVENTORY_BG;
-
-    static {
-        ICONS = new ResourceLocation(ModularWarfare.MOD_ID, "textures/gui/icons.png");
-        INVENTORY_BG = new ResourceLocation(ModularWarfare.MOD_ID, "textures/gui/inventory.png");
-    }
-
+public class GuiInventoryModified extends InventoryEffectRenderer
+{
     private float oldMouseX;
     private float oldMouseY;
+    public static final ResourceLocation ICONS;
+    public static final ResourceLocation INVENTORY_BG;
 
     public GuiInventoryModified(final EntityPlayer player) {
         super(new ContainerInventoryModified(player.inventory, !player.getEntityWorld().isRemote, player));
@@ -74,10 +70,113 @@ public class GuiInventoryModified extends InventoryEffectRenderer {
         final int l = this.guiTop;
         this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
         final ContainerInventoryModified containter = (ContainerInventoryModified) Minecraft.getMinecraft().player.openContainer;
-        final IItemHandler backpack = (IItemHandler) containter.extra;
-        if (backpack.getStackInSlot(0).hasCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, (EnumFacing) null)) {
+        final IItemHandler backpack = (IItemHandler)containter.extra;
+        final IItemHandler vest = (IItemHandler)containter.extra;
+
+        if (vest.getStackInSlot(3).hasCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, (EnumFacing)null)) {
+            final ItemStack stack = vest.getStackInSlot(3);
+            final IItemHandler vestInv = (IItemHandler)stack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, (EnumFacing)null);
+            int xP = 0;
+            int yP = 0;
+            final int x = k - 70;
+            final int y = l + 18;
+            this.mc.getTextureManager().bindTexture(GuiInventoryModified.ICONS);
+            this.drawTexturedModalRect(x - 5, y - 18, 18, 0, 82, 18);
+            this.drawTexturedModalRect(x - 5, y, 18, 5, 82, 18);
+            for (int i = 0; i < vestInv.getSlots(); ++i) {
+                this.drawSlotBackground(x + xP * 18, -1 + y + yP * 18);
+                if (++xP % 4 == 0) {
+                    xP = 0;
+                    ++yP;
+                    if (i + 1 < vestInv.getSlots()) {
+                        this.drawTexturedModalRect(x - 5, y + yP * 18, 18, 5, 82, 18);
+                    }
+                }
+                else if (i + 1 >= vestInv.getSlots()) {
+                    ++yP;
+                }
+            }
+            this.drawTexturedModalRect(x - 5, -1 + y + yP * 18, 18, 33, 82, 5);
+
+            if(stack != null){
+                ItemVest vestItem = (ItemVest)stack.getItem();
+                this.fontRenderer.drawString("Vest Tactique", x, y - 12, 16777215);
+            }
+            RenderHelper.disableStandardItemLighting();
+            GlStateManager.color(1.0f, 1.0f, 1.0f);
+        }
+
+
+        if (vest.getStackInSlot(3).hasCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, (EnumFacing)null)) {
+            final ItemStack stack = backpack.getStackInSlot(3);
+            final IItemHandler vestInv = (IItemHandler)stack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, (EnumFacing)null);
+            int xP = 0;
+            int yP = 0;
+            final int x = k - 70;
+            final int y = l + 18;
+            this.mc.getTextureManager().bindTexture(GuiInventoryModified.ICONS);
+            this.drawTexturedModalRect(x - 5, y - 18, 18, 0, 82, 18);
+            this.drawTexturedModalRect(x - 5, y, 18, 5, 82, 18);
+            for (int i = 0; i < vestInv.getSlots(); ++i) {
+                this.drawSlotBackground(x + xP * 18, -1 + y + yP * 18);
+                if (++xP % 4 == 0) {
+                    xP = 0;
+                    ++yP;
+                    if (i + 1 < vestInv.getSlots()) {
+                        this.drawTexturedModalRect(x - 5, y + yP * 18, 18, 5, 82, 18);
+                    }
+                }
+                else if (i + 1 >= vestInv.getSlots()) {
+                    ++yP;
+                }
+            }
+            this.drawTexturedModalRect(x - 5, -1 + y + yP * 18, 18, 33, 82, 5);
+
+            if(stack != null){
+                ItemVest vestItem = (ItemVest)stack.getItem();
+            }
+            RenderHelper.disableStandardItemLighting();
+            GlStateManager.color(1.0f, 1.0f, 1.0f);
+        }
+
+        //------------- VEST
+        if (vest.getStackInSlot(0).hasCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, (EnumFacing)null)) {
+            final ItemStack stack = vest.getStackInSlot(0);
+            final IItemHandler vestInv = (IItemHandler)stack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, (EnumFacing)null);
+            int xP = 0;
+            int yP = 0;
+            final int x = k + 180;
+            final int y = l + 18;
+            this.mc.getTextureManager().bindTexture(GuiInventoryModified.ICONS);
+            this.drawTexturedModalRect(x - 5, y - 18, 18, 0, 82, 18);
+            this.drawTexturedModalRect(x - 5, y, 18, 5, 82, 18);
+            for (int i = 0; i < vestInv.getSlots(); ++i) {
+                this.drawSlotBackground(x + xP * 18, -1 + y + yP * 18);
+                if (++xP % 4 == 0) {
+                    xP = 0;
+                    ++yP;
+                    if (i + 1 < vestInv.getSlots()) {
+                        this.drawTexturedModalRect(x - 5, y + yP * 18, 18, 5, 82, 18);
+                    }
+                }
+                else if (i + 1 >= vestInv.getSlots()) {
+                    ++yP;
+                }
+            }
+            this.drawTexturedModalRect(x - 5, -1 + y + yP * 18, 18, 33, 82, 5);
+
+            if(stack != null){
+                ItemBackpack backpackItem = (ItemBackpack)stack.getItem();
+                this.fontRenderer.drawString(backpackItem.type.displayName, x, y - 12, 16777215);
+            }
+            RenderHelper.disableStandardItemLighting();
+            GlStateManager.color(1.0f, 1.0f, 1.0f);
+        }
+
+        //-------- BACKPACK
+        if (backpack.getStackInSlot(0).hasCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, (EnumFacing)null)) {
             final ItemStack stack = backpack.getStackInSlot(0);
-            final IItemHandler backpackInv = (IItemHandler) stack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, (EnumFacing) null);
+            final IItemHandler backpackInv = (IItemHandler)stack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, (EnumFacing)null);
             int xP = 0;
             int yP = 0;
             final int x = k + 180;
@@ -93,20 +192,21 @@ public class GuiInventoryModified extends InventoryEffectRenderer {
                     if (i + 1 < backpackInv.getSlots()) {
                         this.drawTexturedModalRect(x - 5, y + yP * 18, 18, 5, 82, 18);
                     }
-                } else if (i + 1 >= backpackInv.getSlots()) {
+                }
+                else if (i + 1 >= backpackInv.getSlots()) {
                     ++yP;
                 }
             }
             this.drawTexturedModalRect(x - 5, -1 + y + yP * 18, 18, 33, 82, 5);
 
-            if (stack != null) {
-                ItemBackpack backpackItem = (ItemBackpack) stack.getItem();
+            if(stack != null){
+                ItemBackpack backpackItem = (ItemBackpack)stack.getItem();
                 this.fontRenderer.drawString(backpackItem.type.displayName, x, y - 12, 16777215);
             }
             RenderHelper.disableStandardItemLighting();
             GlStateManager.color(1.0f, 1.0f, 1.0f);
         }
-        GuiPlayerInventory.drawEntityOnScreen(k + 51, l + 75, 30, k + 51 - this.oldMouseX, l + 75 - 50 - this.oldMouseY, (EntityLivingBase) this.mc.player);
+        GuiPlayerInventory.drawEntityOnScreen(k + 51, l + 75, 30, k + 51 - this.oldMouseX, l + 75 - 50 - this.oldMouseY, (EntityLivingBase)this.mc.player);
     }
 
     protected void actionPerformed(final GuiButton button) {
@@ -115,5 +215,10 @@ public class GuiInventoryModified extends InventoryEffectRenderer {
     public void drawSlotBackground(final int x, final int y) {
         this.mc.getTextureManager().bindTexture(GuiInventoryModified.ICONS);
         this.drawTexturedModalRect(x, y, 0, 0, 18, 18);
+    }
+
+    static {
+        ICONS = new ResourceLocation(ModularWarfare.MOD_ID, "textures/gui/icons.png");
+        INVENTORY_BG = new ResourceLocation(ModularWarfare.MOD_ID, "textures/gui/inventory.png");
     }
 }

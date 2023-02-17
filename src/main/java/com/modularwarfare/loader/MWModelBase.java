@@ -83,6 +83,7 @@ public class MWModelBase extends ModelBase implements IMWModel{
     @SideOnly(Side.CLIENT)
     public void render(ObjModelRenderer model, float f) {
         GL11.glPushMatrix();
+        GL11.glRotatef(90F, 1.0F, 0F, 0F);
 
         if (model != null)
             model.render(f);
