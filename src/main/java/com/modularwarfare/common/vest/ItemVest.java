@@ -1,6 +1,5 @@
 package com.modularwarfare.common.vest;
 
-import com.modularwarfare.common.backpacks.BackpackType;
 import com.modularwarfare.common.capability.extraslots.CapabilityExtra;
 import com.modularwarfare.common.capability.extraslots.IExtraItemHandler;
 import com.modularwarfare.common.container.ContainerInventoryModified;

@@ -6,6 +6,7 @@ import com.modularwarfare.common.backpacks.BackpackType;
 import com.modularwarfare.common.backpacks.ItemBackpack;
 import com.modularwarfare.common.capability.extraslots.CapabilityExtra;
 import com.modularwarfare.common.capability.extraslots.IExtraItemHandler;
+import com.modularwarfare.common.entity.grenades.EntityGasGrenade;
 import com.modularwarfare.common.guns.*;
 import com.modularwarfare.common.network.PacketBackpackEquip;
 import com.modularwarfare.common.network.PacketVestEquip;
@@ -213,10 +214,9 @@ public class ContainerInventoryModified extends Container {
                                 }  else if (itemVest.type.ismedicalPencil == true){
                                     /*if(stack.getItem() instanceof ItemMorphine || stack.getItem() instanceof ItemRegen || stack.getItem() instanceof ItemRegen2 || stack.getItem() instanceof ItemHeal || stack.getItem() instanceof ItemVitamin_pills || stack.getItem() instanceof  ItemPainKiller){
                                         return true;
-                                    } else {
+                                    } else {*/
                                         return false;
-                                    }*/
-                                } if (itemVest.type.isammoStorage == true){
+                                } else if (itemVest.type.isammoStorage == true){
                                     if(stack.getItem() instanceof ItemAmmo || stack.getItem() instanceof ItemBullet) {                                   return true;
                                     } else {
                                         return false;
@@ -395,6 +395,7 @@ public class ContainerInventoryModified extends Container {
         }
         ModularWarfare.NETWORK.sendToServer(new PacketBackpackEquip());
         ModularWarfare.NETWORK.sendToServer(new PacketVestEquip());
+
     }
 
     @Override
@@ -406,6 +407,29 @@ public class ContainerInventoryModified extends Container {
     public ItemStack transferStackInSlot(final EntityPlayer playerIn, final int index) {
         ItemStack itemstack = ItemStack.EMPTY;
         final Slot slot = this.inventorySlots.get(index);
+
+        if ((slot != null) && slot.getHasStack()) {
+            final ItemStack itemstack1 = slot.getStack();
+            itemstack = itemstack1.copy();
+            final EntityEquipmentSlot entityequipmentslot = EntityLiving.getSlotForItemStack(itemstack);
+
+
+            if (itemstack1.isEmpty()) {
+                slot.putStack(ItemStack.EMPTY);
+            } else {
+                slot.onSlotChanged();
+            }
+
+            if (itemstack1.getCount() == itemstack.getCount()) {
+                return ItemStack.EMPTY;
+            }
+
+            final ItemStack itemstack2 = slot.onTake(playerIn, itemstack1);
+
+            if (index == 0) {
+                playerIn.dropItem(itemstack2, false);
+            }
+        }
 
         return itemstack;
     }

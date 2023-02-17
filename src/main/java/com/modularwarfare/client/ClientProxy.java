@@ -21,10 +21,7 @@ import com.modularwarfare.client.hud.GunUI;
 import com.modularwarfare.client.killchat.KillFeedManager;
 import com.modularwarfare.client.killchat.KillFeedRender;
 import com.modularwarfare.client.model.ModelGun;
-import com.modularwarfare.client.model.layers.RenderLayerBackpack;
-import com.modularwarfare.client.model.layers.RenderLayerBody;
-import com.modularwarfare.client.model.layers.RenderLayerHeldGun;
-import com.modularwarfare.client.model.layers.ResetHiddenModelLayer;
+import com.modularwarfare.client.model.layers.*;
 import com.modularwarfare.client.patch.customnpc.CustomNPCListener;
 import com.modularwarfare.client.patch.galacticraft.GCCompatInterop;
 import com.modularwarfare.client.patch.galacticraft.GCDummyInterop;
@@ -284,6 +281,7 @@ public class ClientProxy extends CommonProxy {
     public void setupLayers(RenderPlayer renderer) {
         MWFRenderHelper helper = new MWFRenderHelper(renderer);
         helper.getLayerRenderers().add(0, new ResetHiddenModelLayer(renderer));
+        renderer.addLayer(new RenderLayerVest(renderer, renderer.getMainModel().bipedBodyWear));
         renderer.addLayer(new RenderLayerBackpack(renderer, renderer.getMainModel().bipedBodyWear));
         renderer.addLayer(new RenderLayerBody(renderer, renderer.getMainModel().bipedBodyWear));
         // Disabled for animation third person test
@@ -369,15 +367,12 @@ public class ClientProxy extends CommonProxy {
         for (ItemBox itemBox : ModularWarfare.boxTypes.values()) {
             ModelLoader.setCustomModelResourceLocation(itemBox, 0, new ModelResourceLocation(ModularWarfare.MOD_ID + ":" + itemBox.type.internalName));
         }
-
         for (ItemBackpack itemBackpack : ModularWarfare.backpackTypes.values()) {
             ModelLoader.setCustomModelResourceLocation(itemBackpack, 0, new ModelResourceLocation(ModularWarfare.MOD_ID + ":" + itemBackpack.type.internalName));
         }
-
         for (ItemVest itemVest : ModularWarfare.vestTypes.values()) {
             ModelLoader.setCustomModelResourceLocation(itemVest, 0, new ModelResourceLocation(ModularWarfare.MOD_ID + ":" + itemVest.type.internalName));
         }
-
         for (ItemGrenade itemGrenade : ModularWarfare.grenadeTypes.values()) {
             ModelLoader.setCustomModelResourceLocation(itemGrenade, 0, new ModelResourceLocation(ModularWarfare.MOD_ID + ":" + itemGrenade.type.internalName));
         }

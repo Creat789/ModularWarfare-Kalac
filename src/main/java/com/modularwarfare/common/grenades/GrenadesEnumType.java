@@ -4,13 +4,11 @@ import com.google.gson.annotations.SerializedName;
 
 public enum GrenadesEnumType {
 
-    /**
-     * enum weaponType
-     * CUSTOM, PISTOL, MP, SMG, CARBINE, RIFLE, AR, DMR, SNIPER, SHOTGUN, etc
-     */
     @SerializedName("frag") Frag("frag"),
     @SerializedName("smoke") Smoke("smoke"),
-    @SerializedName("stun") Stun("stun");
+    @SerializedName("stun") Stun("stun"),
+    @SerializedName("gas") Gas("gas"),
+    @SerializedName("c4") C4("c4");
 
 
     public String typeName;
