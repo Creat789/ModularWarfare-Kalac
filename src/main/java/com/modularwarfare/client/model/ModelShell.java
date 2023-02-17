@@ -1,6 +1,6 @@
 package com.modularwarfare.client.model;
 
-import com.modularwarfare.common.guns.BulletType;
+import com.modularwarfare.common.ammo.BulletType;
 import com.modularwarfare.loader.MWModelBase;
 import com.modularwarfare.loader.api.ObjModelLoader;
 

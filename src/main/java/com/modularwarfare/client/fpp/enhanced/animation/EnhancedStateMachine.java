@@ -11,7 +11,7 @@ import com.modularwarfare.client.fpp.enhanced.configs.GunEnhancedRenderConfig.An
 import com.modularwarfare.client.fpp.enhanced.models.ModelEnhancedGun;
 import com.modularwarfare.client.handler.ClientTickHandler;
 import com.modularwarfare.common.guns.GunType;
-import com.modularwarfare.common.guns.ItemAmmo;
+import com.modularwarfare.common.ammo.ItemAmmo;
 import com.modularwarfare.common.guns.ItemGun;
 import com.modularwarfare.common.guns.WeaponSoundType;
 import com.modularwarfare.common.network.PacketGunReloadEnhancedStop;

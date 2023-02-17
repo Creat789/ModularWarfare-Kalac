@@ -1,8 +1,7 @@
 package com.modularwarfare.common.entity;
 
 import com.modularwarfare.ModularWarfare;
-import com.modularwarfare.common.guns.ItemBullet;
-import net.minecraft.entity.Entity;
+import com.modularwarfare.common.ammo.ItemBullet;
 import net.minecraft.entity.IProjectile;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.RayTraceResult;

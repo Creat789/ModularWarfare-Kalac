@@ -1,8 +1,8 @@
-package com.modularwarfare.common.guns;
+package com.modularwarfare.common.ammo;
 
 import com.modularwarfare.common.type.BaseType;
 
-public class PartType extends BaseType {
+public class BoxType extends BaseType {
 
 	public String skinName;
 
@@ -23,7 +23,7 @@ public class PartType extends BaseType {
 	@Override
 	public String getAssetDir()
 	{
-		return "parts";
+		return "boxes";
 	}
 
 }

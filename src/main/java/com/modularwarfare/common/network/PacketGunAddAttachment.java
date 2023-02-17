@@ -1,6 +1,9 @@
 package com.modularwarfare.common.network;
 
 import com.modularwarfare.ModularWarfare;
+import com.modularwarfare.common.attachment.AttachmentType;
+import com.modularwarfare.common.attachment.ItemAttachment;
+import com.modularwarfare.common.cosmetics.ItemSpray;
 import com.modularwarfare.common.guns.*;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;

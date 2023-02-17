@@ -2,17 +2,17 @@ package com.modularwarfare.client.scope;
 
 
 import com.google.gson.JsonSyntaxException;
-import com.modularmods.mcgltf.MCglTF;
 import com.modularwarfare.ModConfig;
 import com.modularwarfare.ModularWarfare;
 import com.modularwarfare.client.ClientProxy;
 import com.modularwarfare.client.ClientRenderHooks;
 import com.modularwarfare.client.fpp.basic.configs.AttachmentRenderConfig.Sight;
-import com.modularwarfare.client.fpp.enhanced.AnimationType;
 import com.modularwarfare.client.model.ModelAttachment;
 import com.modularwarfare.client.fpp.basic.renderers.RenderParameters;
 import com.modularwarfare.client.fpp.enhanced.renderers.RenderGunEnhanced;
 import com.modularwarfare.client.shader.Programs;
+import com.modularwarfare.common.attachment.AttachmentPresetEnum;
+import com.modularwarfare.common.attachment.ItemAttachment;
 import com.modularwarfare.common.guns.*;
 import com.modularwarfare.mixin.client.accessor.IShaderGroup;
 import com.modularwarfare.utility.OptifineHelper;
@@ -32,7 +32,6 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.world.World;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 import net.minecraftforge.client.event.RenderWorldLastEvent;

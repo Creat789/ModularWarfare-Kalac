@@ -1,7 +1,7 @@
 package com.modularwarfare.common.network;
 
-import com.modularwarfare.ModConfig;
 import com.modularwarfare.ModularWarfare;
+import com.modularwarfare.common.attachment.AttachmentPresetEnum;
 import com.modularwarfare.common.guns.*;
 import com.modularwarfare.common.handler.ServerTickHandler;
 import io.netty.buffer.ByteBuf;

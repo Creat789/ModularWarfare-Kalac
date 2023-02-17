@@ -1,4 +1,4 @@
-package com.modularwarfare.common.guns;
+package com.modularwarfare.common.ammo;
 
 import com.modularwarfare.ModularWarfare;
 import com.modularwarfare.client.fpp.basic.configs.BulletRenderConfig;

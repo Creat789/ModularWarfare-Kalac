@@ -1,8 +1,10 @@
-package com.modularwarfare.common.guns;
+package com.modularwarfare.common.attachment;
 
 import com.modularwarfare.ModularWarfare;
 import com.modularwarfare.client.fpp.basic.configs.AttachmentRenderConfig;
 import com.modularwarfare.client.model.ModelAttachment;
+import com.modularwarfare.common.guns.WeaponDotColorType;
+import com.modularwarfare.common.guns.WeaponScopeModeType;
 import com.modularwarfare.common.textures.TextureEnumType;
 import com.modularwarfare.common.textures.TextureType;
 import com.modularwarfare.common.type.BaseType;

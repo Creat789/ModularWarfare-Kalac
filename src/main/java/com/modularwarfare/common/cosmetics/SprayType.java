@@ -1,4 +1,4 @@
-package com.modularwarfare.common.guns;
+package com.modularwarfare.common.cosmetics;
 
 import com.modularwarfare.common.type.BaseType;
 

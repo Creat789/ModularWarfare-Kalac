@@ -1,4 +1,4 @@
-package com.modularwarfare.common.guns;
+package com.modularwarfare.common.parts;
 
 import com.modularwarfare.common.type.BaseItem;
 import net.minecraft.client.gui.GuiScreen;

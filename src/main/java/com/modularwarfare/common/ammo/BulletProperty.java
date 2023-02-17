@@ -1,4 +1,6 @@
-package com.modularwarfare.common.guns;
+package com.modularwarfare.common.ammo;
+
+import com.modularwarfare.common.guns.PotionEntry;
 
 public class BulletProperty {
 

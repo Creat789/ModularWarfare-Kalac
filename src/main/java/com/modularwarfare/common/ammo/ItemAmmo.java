@@ -1,6 +1,8 @@
-package com.modularwarfare.common.guns;
+package com.modularwarfare.common.ammo;
 
 import com.modularwarfare.ModularWarfare;
+import com.modularwarfare.common.guns.GunType;
+import com.modularwarfare.common.guns.ItemGun;
 import com.modularwarfare.common.network.PacketGunReload;
 import com.modularwarfare.common.type.BaseItem;
 import com.modularwarfare.common.type.BaseType;

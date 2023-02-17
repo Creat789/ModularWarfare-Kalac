@@ -1,5 +1,6 @@
-package com.modularwarfare.common.guns;
+package com.modularwarfare.common.ammo;
 
+import com.modularwarfare.common.guns.PotionEntry;
 import com.modularwarfare.common.type.BaseItem;
 import com.modularwarfare.common.type.BaseType;
 import net.minecraft.client.util.ITooltipFlag;

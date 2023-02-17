@@ -2,9 +2,8 @@ package com.modularwarfare.utility;
 
 import java.util.function.Consumer;
 
-import com.modularwarfare.ModConfig;
-import com.modularwarfare.common.guns.AmmoType;
-import com.modularwarfare.common.guns.ItemAmmo;
+import com.modularwarfare.common.ammo.AmmoType;
+import com.modularwarfare.common.ammo.ItemAmmo;
 import com.modularwarfare.common.guns.ItemGun;
 import com.modularwarfare.common.handler.data.VarInt;
 import com.modularwarfare.common.type.BaseItem;

@@ -1,12 +1,10 @@
-package com.modularwarfare.common.guns;
+package com.modularwarfare.common.ammo;
 
 import com.modularwarfare.common.type.BaseItem;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import net.minecraftforge.client.event.RenderTooltipEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 

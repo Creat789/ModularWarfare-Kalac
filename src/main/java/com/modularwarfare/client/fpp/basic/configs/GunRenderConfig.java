@@ -3,7 +3,7 @@ package com.modularwarfare.client.fpp.basic.configs;
 import com.modularwarfare.api.WeaponAnimations;
 import com.modularwarfare.client.fpp.basic.models.objects.BreakActionData;
 import com.modularwarfare.client.fpp.basic.models.objects.RenderVariables;
-import com.modularwarfare.common.guns.AttachmentPresetEnum;
+import com.modularwarfare.common.attachment.AttachmentPresetEnum;
 import org.lwjgl.util.vector.Vector3f;
 
 import java.util.ArrayList;

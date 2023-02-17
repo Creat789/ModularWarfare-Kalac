@@ -3,7 +3,7 @@ package com.modularwarfare.utility;
 import com.modularwarfare.ModularWarfare;
 import com.modularwarfare.common.entity.grenades.EntityGrenade;
 import com.modularwarfare.common.guns.GunType;
-import com.modularwarfare.common.guns.ItemBullet;
+import com.modularwarfare.common.ammo.ItemBullet;
 import com.modularwarfare.common.guns.ItemGun;
 import com.modularwarfare.common.guns.WeaponType;
 import com.modularwarfare.common.hitbox.PlayerHitbox;
@@ -14,7 +14,6 @@ import com.modularwarfare.common.hitbox.playerdata.PlayerData;
 import com.modularwarfare.common.network.PacketGunTrail;
 import com.modularwarfare.common.network.PacketGunTrailAskServer;
 import com.modularwarfare.common.network.PacketPlaySound;
-import com.mrcrayfish.furniture.blocks.props.*;
 import mchhui.modularmovements.coremod.ModularMovementsHooks;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
@@ -458,9 +457,9 @@ public class RayUtil {
                     }
 
 
-                    if (block1 instanceof BlockSlab || block1 instanceof Block1hitdown || block1 instanceof Block1hitdownno || block1 instanceof Block1hitnoglass || block1 instanceof Block2hitno_ETA || block1 instanceof Block2hit_ETA || block1 instanceof BlockLeaves || block1 instanceof BlockBarrier || block1 instanceof BlockDoor || block1 instanceof BlockTallGrass || block1 instanceof  BlockIce) {
+                   /* if (block1 instanceof BlockSlab || block1 instanceof Block1hitdown || block1 instanceof Block1hitdownno || block1 instanceof Block1hitnoglass || block1 instanceof Block2hitno_ETA || block1 instanceof Block2hit_ETA || block1 instanceof BlockLeaves || block1 instanceof BlockBarrier || block1 instanceof BlockDoor || block1 instanceof BlockTallGrass || block1 instanceof  BlockIce) {
                         continue;
-                    }
+                    }*/
 
                     if(block1 instanceof BlockPane){
                         ModularWarfare.NETWORK.sendToAllAround(new PacketPlaySound(blockpos, "impact.iron", 1f, 1f), new NetworkRegistry.TargetPoint(0, blockpos.getX(), blockpos.getY(), blockpos.getZ(), 25));

@@ -1,4 +1,4 @@
-package com.modularwarfare.common.guns;
+package com.modularwarfare.common.attachment;
 
 import com.modularwarfare.common.type.BaseItem;
 import net.minecraft.entity.Entity;

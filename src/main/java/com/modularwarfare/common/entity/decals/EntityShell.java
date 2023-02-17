@@ -2,7 +2,7 @@ package com.modularwarfare.common.entity.decals;
 
 import com.modularwarfare.ModConfig;
 import com.modularwarfare.ModularWarfare;
-import com.modularwarfare.common.guns.ItemBullet;
+import com.modularwarfare.common.ammo.ItemBullet;
 import com.modularwarfare.common.guns.ItemGun;
 import com.modularwarfare.common.handler.ServerTickHandler;
 import com.modularwarfare.common.network.PacketPlaySound;

@@ -5,7 +5,7 @@ import com.modularwarfare.client.fpp.basic.animations.StateType;
 import com.modularwarfare.client.model.ModelGun;
 import com.modularwarfare.client.fpp.basic.renderers.RenderGunStatic;
 import com.modularwarfare.common.guns.GunType;
-import com.modularwarfare.common.guns.ItemAmmo;
+import com.modularwarfare.common.ammo.ItemAmmo;
 import com.modularwarfare.common.guns.ItemGun;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;

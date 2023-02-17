@@ -1,21 +1,19 @@
 package com.modularwarfare.common.container;
 
 import com.modularwarfare.ModularWarfare;
+import com.modularwarfare.common.ammo.ItemAmmo;
+import com.modularwarfare.common.ammo.ItemBullet;
 import com.modularwarfare.common.armor.ItemSpecialArmor;
-import com.modularwarfare.common.backpacks.BackpackType;
 import com.modularwarfare.common.backpacks.ItemBackpack;
 import com.modularwarfare.common.capability.extraslots.CapabilityExtra;
 import com.modularwarfare.common.capability.extraslots.IExtraItemHandler;
-import com.modularwarfare.common.entity.grenades.EntityGasGrenade;
 import com.modularwarfare.common.guns.*;
 import com.modularwarfare.common.network.PacketBackpackEquip;
 import com.modularwarfare.common.network.PacketVestEquip;
+import com.modularwarfare.common.parts.ItemPart;
 import com.modularwarfare.common.vest.ItemVest;
 import com.modularwarfare.common.vest.VestType;
 import com.modularwarfare.utility.ModUtil;
-import mchhui.modularmovements.coremod.minecraft.Entity;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
@@ -23,10 +21,6 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentString;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.CapabilityItemHandler;
@@ -35,8 +29,6 @@ import net.minecraftforge.items.SlotItemHandler;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 /***
  * Modified copy of Vanilla's Player inventory

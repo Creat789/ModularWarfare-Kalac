@@ -1,7 +1,6 @@
 package com.modularwarfare.client;
 
 import com.modularwarfare.ModConfig;
-import com.modularwarfare.ModularWarfare;
 import com.modularwarfare.api.AnimationUtils;
 import com.modularwarfare.api.RenderHandFisrtPersonEvent;
 import com.modularwarfare.client.fpp.basic.animations.AnimStateMachine;
@@ -17,6 +16,8 @@ import com.modularwarfare.client.fpp.basic.models.objects.CustomItemRenderer;
 import com.modularwarfare.common.armor.ArmorType;
 import com.modularwarfare.common.armor.ItemMWArmor;
 import com.modularwarfare.common.armor.ItemSpecialArmor;
+import com.modularwarfare.common.attachment.AttachmentPresetEnum;
+import com.modularwarfare.common.attachment.ItemAttachment;
 import com.modularwarfare.common.backpacks.ItemBackpack;
 import com.modularwarfare.common.entity.grenades.EntitySmokeGrenade;
 import com.modularwarfare.common.guns.*;

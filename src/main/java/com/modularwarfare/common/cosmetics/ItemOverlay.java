@@ -1,7 +1,6 @@
-package com.modularwarfare.common.guns;
+package com.modularwarfare.common.cosmetics;
 
 import com.modularwarfare.common.type.BaseItem;
-import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;

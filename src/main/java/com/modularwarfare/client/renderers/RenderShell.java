@@ -5,7 +5,7 @@ import com.modularwarfare.client.ClientRenderHooks;
 import com.modularwarfare.client.model.ModelShell;
 import com.modularwarfare.common.entity.decals.EntityShell;
 import com.modularwarfare.common.guns.GunType;
-import com.modularwarfare.common.guns.ItemBullet;
+import com.modularwarfare.common.ammo.ItemBullet;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.entity.Render;

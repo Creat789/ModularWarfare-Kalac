@@ -1,14 +1,10 @@
 package com.modularwarfare.common.network;
 
 import com.modularwarfare.ModularWarfare;
-import com.modularwarfare.api.WeaponReloadEvent;
-import com.modularwarfare.client.fpp.basic.animations.ReloadType;
 import com.modularwarfare.common.guns.GunType;
-import com.modularwarfare.common.guns.ItemAmmo;
-import com.modularwarfare.common.guns.ItemBullet;
+import com.modularwarfare.common.ammo.ItemBullet;
 import com.modularwarfare.common.guns.ItemGun;
 import com.modularwarfare.common.guns.WeaponAnimationType;
-import com.modularwarfare.common.guns.WeaponSoundType;
 import com.modularwarfare.common.handler.ServerTickHandler;
 import com.modularwarfare.common.handler.data.DataGunReloadEnhancedTask;
 import com.modularwarfare.utility.ReloadHelper;
@@ -20,7 +16,6 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.common.MinecraftForge;
 
 public class PacketGunReloadEnhancedStop extends PacketBase {
     public int reloadValidCount;

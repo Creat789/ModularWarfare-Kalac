@@ -26,17 +26,6 @@ public class CustomNPCListener {
     }
 
     @SubscribeEvent
-    public void guiPostInit(GuiScreenEvent.InitGuiEvent.Post event) {
-        if (Loader.isModLoaded("customnpcs")) {
-            if (event.getGui() instanceof GuiInventory || event.getGui() instanceof GuiInventoryModified) {
-                GuiContainer gui = (GuiContainer) event.getGui();
-                event.getButtonList().add(new GuiQuestButton(55, gui, 93, 60, 18, 19,
-                        I18n.format((event.getGui() instanceof GuiInventory) ? "QUEST" : "QUEST")));
-            }
-        }
-    }
-
-    @SubscribeEvent
     public void initLayersCNPCs(@SuppressWarnings("unused") RenderLivingEvent.Pre<EntityLivingBase> event) {
         try {
             Class classz = Class.forName("noppes.npcs.entity.EntityCustomNpc");

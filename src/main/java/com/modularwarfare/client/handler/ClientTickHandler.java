@@ -14,7 +14,7 @@ import com.modularwarfare.client.fpp.basic.renderers.RenderParameters;
 import com.modularwarfare.common.grenades.ItemGrenade;
 import com.modularwarfare.common.guns.GunType;
 import com.modularwarfare.common.guns.ItemGun;
-import com.modularwarfare.common.guns.ItemSpray;
+import com.modularwarfare.common.cosmetics.ItemSpray;
 import com.modularwarfare.common.guns.WeaponAnimationType;
 import com.modularwarfare.common.guns.WeaponSoundType;
 import com.modularwarfare.utility.MWSound;

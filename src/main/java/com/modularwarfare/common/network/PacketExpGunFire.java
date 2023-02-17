@@ -2,13 +2,14 @@ package com.modularwarfare.common.network;
 
 import com.modularwarfare.ModConfig;
 import com.modularwarfare.ModularWarfare;
+import com.modularwarfare.common.ammo.BulletProperty;
+import com.modularwarfare.common.ammo.ItemBullet;
 import com.modularwarfare.common.armor.ArmorType;
 import com.modularwarfare.common.armor.ItemSpecialArmor;
 import com.modularwarfare.common.capability.extraslots.CapabilityExtra;
 import com.modularwarfare.common.capability.extraslots.IExtraItemHandler;
 import com.modularwarfare.common.guns.*;
 import com.modularwarfare.common.guns.manager.ShotValidation;
-import com.modularwarfare.utility.ModularDamageSource;
 import com.modularwarfare.utility.RayUtil;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
