@@ -38,6 +38,7 @@ import com.modularwarfare.common.textures.TextureType;
 import com.modularwarfare.common.type.BaseType;
 import com.modularwarfare.common.type.ContentTypes;
 import com.modularwarfare.common.type.TypeEntry;
+import com.modularwarfare.common.vest.ItemVest;
 import com.modularwarfare.raycast.DefaultRayCasting;
 import com.modularwarfare.raycast.RayCasting;
 import com.modularwarfare.utility.GSONUtils;
@@ -124,9 +125,15 @@ public class ModularWarfare {
     public static LinkedHashMap<String, ItemSpecialArmor> specialArmorTypes = new LinkedHashMap<String, ItemSpecialArmor>();
     public static HashMap<String, ItemBullet> bulletTypes = new HashMap<String, ItemBullet>();
     public static HashMap<String, ItemSpray> sprayTypes = new HashMap<String, ItemSpray>();
-    public static HashMap<String, ItemBackpack> backpackTypes = new HashMap<String, ItemBackpack>();
-    public static HashMap<String, ItemGrenade> grenadeTypes = new HashMap<String, ItemGrenade>();
+    public static HashMap<String, ItemOverlay> overlayTypes = new HashMap<String, ItemOverlay>();
+    public static HashMap<String, ItemBox> boxTypes = new HashMap<String, ItemBox>();
+    public static HashMap<String, ItemPart> partTypes = new HashMap<String, ItemPart>();
     public static HashMap<String, TextureType> textureTypes = new HashMap<String, TextureType>();
+
+    public static HashMap<String, ItemBackpack> backpackTypes = new HashMap<String, ItemBackpack>();
+    public static HashMap<String, ItemVest> vestTypes = new HashMap<String, ItemVest>();
+
+    public static HashMap<String, ItemGrenade> grenadeTypes = new HashMap<String, ItemGrenade>();
 
     public static ArrayList<BaseType> baseTypes = new ArrayList<BaseType>();
 
