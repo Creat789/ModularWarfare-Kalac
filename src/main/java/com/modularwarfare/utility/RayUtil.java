@@ -1,6 +1,7 @@
 package com.modularwarfare.utility;
 
 import com.modularwarfare.ModularWarfare;
+import com.modularwarfare.common.entity.grenades.EntityC4;
 import com.modularwarfare.common.entity.grenades.EntityGrenade;
 import com.modularwarfare.common.guns.GunType;
 import com.modularwarfare.common.ammo.ItemBullet;
@@ -308,6 +309,21 @@ public class RayUtil {
                         }
                     }
                 } else if (ent instanceof EntityGrenade){
+                    float entBorder = ent.getCollisionBorderSize();
+                    entityBb = ent.getEntityBoundingBox();
+                    if (entityBb != null) {
+                        entityBb = entityBb.grow(entBorder, entBorder, entBorder);
+                        intercept = entityBb.calculateIntercept(startVec, endVec);
+                        if (intercept != null) {
+                            currentHit = (float) intercept.hitVec.distanceTo(startVec);
+                            hit = intercept.hitVec;
+                            if (currentHit < closestHit || currentHit == 0) {
+                                closestHit = currentHit;
+                                closestHitEntity = ent;
+                            }
+                        }
+                    }
+                } else if (ent instanceof EntityC4){
                     float entBorder = ent.getCollisionBorderSize();
                     entityBb = ent.getEntityBoundingBox();
                     if (entityBb != null) {

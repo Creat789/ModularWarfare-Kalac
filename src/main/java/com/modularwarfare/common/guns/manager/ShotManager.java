@@ -17,6 +17,7 @@ import com.modularwarfare.common.capability.extraslots.CapabilityExtra;
 import com.modularwarfare.common.capability.extraslots.IExtraItemHandler;
 import com.modularwarfare.common.entity.EntityExplosiveProjectile;
 import com.modularwarfare.common.entity.decals.EntityShell;
+import com.modularwarfare.common.entity.grenades.EntityC4;
 import com.modularwarfare.common.entity.grenades.EntityGrenade;
 import com.modularwarfare.common.guns.*;
 import com.modularwarfare.common.handler.ServerTickHandler;
@@ -197,6 +198,7 @@ public class ShotManager {
             } else {
                 gunType.playSound(entityPlayer, WeaponSoundType.Fire, gunStack, entityPlayer);
             }
+
             List<Entity> entities = new ArrayList();
             int numBullets = gunType.numBullets;
             ItemBullet bulletItem = ItemGun.getUsedBullet(gunStack, gunType);
@@ -238,6 +240,9 @@ public class ShotManager {
                             if (rayTrace.rayTraceResult != null) {
                                 if (rayTrace.rayTraceResult.entityHit instanceof EntityGrenade) {
                                     ((EntityGrenade) rayTrace.rayTraceResult.entityHit).explode();
+                                }
+                                if (rayTrace.rayTraceResult.entityHit instanceof EntityC4) {
+                                    ((EntityC4) rayTrace.rayTraceResult.entityHit).explode();
                                 }
                                 if (rayTrace.rayTraceResult.entityHit instanceof EntityLivingBase) {
                                     final EntityLivingBase victim = (EntityLivingBase) ((BulletHit) rayTrace).rayTraceResult.entityHit;

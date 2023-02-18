@@ -3,6 +3,7 @@ package com.modularwarfare.common.network;
 import com.modularwarfare.ModularWarfare;
 import com.modularwarfare.common.attachment.AttachmentType;
 import com.modularwarfare.common.attachment.ItemAttachment;
+import com.modularwarfare.common.cosmetics.ItemOverlay;
 import com.modularwarfare.common.cosmetics.ItemSpray;
 import com.modularwarfare.common.guns.*;
 import io.netty.buffer.ByteBuf;
@@ -89,6 +90,16 @@ public class PacketGunAddAttachment extends PacketBase {
                                     ModularWarfare.NETWORK.sendTo(new PacketPlaySound(entityPlayer.getPosition(), "spray", 1f, 1f), entityPlayer);
                                 }
                             }
+                        }
+                    }
+                    if(attachStack.getItem() instanceof ItemOverlay){
+                        if (gunStack.getTagCompound() != null) {
+                            ItemOverlay itemOverlay = (ItemOverlay)attachStack.getItem();
+                            attachStack.damageItem(1, entityPlayer);
+                            if(attachStack.getMaxDamage() !=0 && attachStack.getItemDamage() == attachStack.getMaxDamage()) {
+                                inventory.removeStackFromSlot(slot);
+                            }
+                            GunType.setOverlay(gunStack, itemOverlay.type);
                         }
                     }
                 }

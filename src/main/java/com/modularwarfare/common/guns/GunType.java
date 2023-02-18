@@ -6,6 +6,7 @@ import com.modularwarfare.client.model.ModelGun;
 import com.modularwarfare.client.fpp.enhanced.configs.GunEnhancedRenderConfig;
 import com.modularwarfare.client.fpp.enhanced.models.ModelEnhancedGun;
 import com.modularwarfare.common.attachment.AttachmentPresetEnum;
+import com.modularwarfare.common.cosmetics.OverlayType;
 import com.modularwarfare.common.textures.TextureEnumType;
 import com.modularwarfare.common.textures.TextureType;
 import com.modularwarfare.common.type.BaseType;
@@ -89,11 +90,11 @@ public class GunType extends BaseType {
     /**
      * Base value for Upwards cursor/view recoil
      */
-    public float recoilPitch = 10.0F;
+    public float recoilPitch = 5.0F;
     /**
      * Base value for Left/Right cursor/view recoil
      */
-    public float recoilYaw = 1.0F;
+    public float recoilYaw = 0.8F;
     /**
      * Modifier for setting the maximum pitch divergence when randomizing recoil (Recoil 2 + rndRecoil 0.5 == 1.5-2.5 Recoil range)
      */
@@ -101,15 +102,15 @@ public class GunType extends BaseType {
     /**
      * Factor of accuracy when sneaking
      */
-    public float accuracySneakFactor = 0.75f;
+    public float accuracySneakFactor = 0.85f;
 
-    public float randomRecoilPitch = 0.5F;
+    public float randomRecoilPitch = 0.6F;
 
     /**
      * Modifier for setting the maximum yaw divergence when randomizing recoil (Recoil 2 + rndRecoil 0.5 == 1.5-2.5 Recoil range)
      * the first line is outdated;
      */
-    public float randomRecoilYaw = 0.5F;
+    public float randomRecoilYaw = 0.4F;
 
     /**
      * Modifier for setting the maximum yaw divergence when randomizing recoil (Recoil 2 + rndRecoil 0.5 == 1.5-2.5 Recoil range)
@@ -223,6 +224,28 @@ public class GunType extends BaseType {
             return nbtTagCompound.hasKey("firemode") ? WeaponFireMode.fromString(nbtTagCompound.getString("firemode")) : null;
         }
         return null;
+    }
+
+    public static String getOverlay(ItemStack heldStack) {
+        if (heldStack.getTagCompound() != null) {
+            NBTTagCompound nbtTagCompound = heldStack.getTagCompound();
+            return nbtTagCompound.hasKey("overlay") ? nbtTagCompound.getString("overlay") : null;
+        }
+        return null;
+    }
+
+    public static void setOverlay(ItemStack heldStack, OverlayType type) {
+        if (heldStack.getTagCompound() != null) {
+            NBTTagCompound nbtTagCompound = heldStack.getTagCompound();
+            nbtTagCompound.setString("overlay", type.internalName);
+        }
+    }
+
+    public static void removeOverlay(ItemStack heldStack, AttachmentPresetEnum type) {
+        if (heldStack.getTagCompound() != null) {
+            NBTTagCompound nbtTagCompound = heldStack.getTagCompound();
+            nbtTagCompound.removeTag("overlay");
+        }
     }
 
     public static void setFireMode(ItemStack heldStack, WeaponFireMode fireMode) {

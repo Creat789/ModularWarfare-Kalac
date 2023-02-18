@@ -21,7 +21,7 @@ public class AttachmentRenderConfig {
 
     public static class Sight {
         public float fovZoom = 3.5f;
-        public float mouseSensitivityFactor = 1.0f;
+        public float mouseSensitivityFactor = 0.7f;
         public float rectileScale = 1.0f;
         
         public float factorCrossScale = 0.2f;

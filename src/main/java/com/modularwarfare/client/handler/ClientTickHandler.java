@@ -384,7 +384,7 @@ public class ClientTickHandler extends ForgeEvent {
         EntityPlayer player = e.player;
             if(!player.world.isRemote)
             {
-                    TextComponentTranslation prefix = new TextComponentTranslation("ModularWarfare Kalac Version 0.0.1");
+                    TextComponentTranslation prefix = new TextComponentTranslation("ModularWarfare Kalac Version " + ModularWarfare.MOD_VERSION);
                     prefix.getStyle().setColor(TextFormatting.GOLD);
                     player.sendMessage(prefix);
             }
