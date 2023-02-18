@@ -3,7 +3,6 @@ package com.modularwarfare.client.patch.galacticraft;
 import com.modularwarfare.client.model.layers.RenderLayerBackpack;
 import com.modularwarfare.client.model.layers.RenderLayerBody;
 import com.modularwarfare.client.model.layers.RenderLayerHeldGun;
-import com.modularwarfare.client.model.layers.RenderLayerVest;
 import net.minecraft.client.renderer.entity.RenderPlayer;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.entity.player.EntityPlayer;
@@ -33,7 +32,6 @@ public class GCInteropImpl implements GCCompatInterop {
     }
     @Override
     public void addLayers(final RenderPlayer rp) {
-        rp.addLayer(new RenderLayerVest(rp, rp.getMainModel().bipedBodyWear));
         rp.addLayer(new RenderLayerBackpack(rp, rp.getMainModel().bipedBodyWear));
         rp.addLayer(new RenderLayerBody(rp, rp.getMainModel().bipedBodyWear));
         rp.addLayer(new RenderLayerHeldGun(rp));

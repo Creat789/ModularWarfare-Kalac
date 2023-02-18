@@ -3,6 +3,7 @@ package com.modularwarfare.client.model.layers;
 import com.modularwarfare.ModularWarfare;
 import com.modularwarfare.client.ClientRenderHooks;
 import com.modularwarfare.client.model.ModelCustomArmor;
+import com.modularwarfare.client.model.ModelVest;
 import com.modularwarfare.common.armor.ArmorType;
 import com.modularwarfare.common.armor.ItemSpecialArmor;
 import com.modularwarfare.common.capability.extraslots.CapabilityExtra;
@@ -12,6 +13,8 @@ import com.modularwarfare.common.capability.extraslots.IExtraItemHandler;
 import com.modularwarfare.common.network.BackWeaponsManager;
 import com.modularwarfare.common.type.BaseItem;
 import com.modularwarfare.common.type.BaseType;
+import com.modularwarfare.common.vest.ItemVest;
+import com.modularwarfare.common.vest.VestType;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.entity.EntityPlayerSP;
@@ -50,6 +53,9 @@ public class RenderLayerBody implements LayerRenderer<EntityPlayer>
                 final ItemStack itemStackSpecialArmor = extraSlots.getStackInSlot(slot);
                 if (!itemStackSpecialArmor.isEmpty() && itemStackSpecialArmor.getItem() instanceof ItemSpecialArmor) {
                     this.renderBody(player, slot, ((ItemSpecialArmor) itemStackSpecialArmor.getItem()).type, scale);
+                }
+                else if(!itemStackSpecialArmor.isEmpty() && itemStackSpecialArmor.getItem() instanceof ItemVest){
+                    this.renderVest(player, scale);
                 }
             }
         }
@@ -119,6 +125,46 @@ public class RenderLayerBody implements LayerRenderer<EntityPlayer>
             GlStateManager.shadeModel(GL11.GL_FLAT);
 
             GlStateManager.popMatrix();
+        }
+    }
+
+    public void renderVest(final EntityPlayer player, final float scale) {
+        final IExtraItemHandler extraSlots = player.getCapability(CapabilityExtra.CAPABILITY, null);
+        final ItemStack itemstackVest = extraSlots.getStackInSlot(3);
+        if (!itemstackVest.isEmpty()) {
+
+            ItemVest vest = (ItemVest) itemstackVest.getItem();
+            GlStateManager.pushMatrix();
+
+            if (player.isSneaking()) {
+                GlStateManager.translate(0.0f, 0.3f, 0.0f);
+                GlStateManager.translate(0.0f, 0.0f, 0.0f);
+                GlStateManager.rotate(30.0f, 1.0f, 0.0f, 0.0f);
+            }
+            GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f);
+            GlStateManager.rotate(180, 0, 1, 0);
+            GlStateManager.scale(scale, scale, scale);
+
+            int skinId = 0;
+            if (itemstackVest.hasTagCompound()) {
+                if (itemstackVest.getTagCompound().hasKey("skinId")) {
+                    skinId = itemstackVest.getTagCompound().getInteger("skinId");
+                }
+            }
+
+            String path = skinId > 0 ? vest.type.modelSkins[skinId].getSkin() : vest.type.modelSkins[0].getSkin();
+
+            Minecraft.getMinecraft().getRenderManager().renderEngine.bindTexture(new ResourceLocation(ModularWarfare.MOD_ID, "skins/vest/" + path + ".png"));
+
+            ModelVest model = (ModelVest)vest.type.model;
+            model.render("vestModel", 1f, ((ModelVest) vest.type.model).config.extra.modelScale);
+
+            GlStateManager.disableLighting();
+            GlStateManager.shadeModel(GL11.GL_SMOOTH);
+            model.render("vestModel", 1f, ((ModelVest) vest.type.model).config.extra.modelScale);
+            GlStateManager.shadeModel(GL11.GL_FLAT);
+            GlStateManager.popMatrix();
+            GlStateManager.enableLighting();
         }
     }
 
