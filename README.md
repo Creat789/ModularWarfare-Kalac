@@ -1,4 +1,13 @@
-<img src='https://raw.githubusercontent.com/ModularMods/ModularWarfare/main/modularwarfare.png' width='99'>
+<img src='https://studio.arking.fr/storage/img/kalac_logo.png' width='99'>
+
+Kalac is a alternative ModularWarfare.
+
+- C4
+- New slot (vest,mask,suits)
+- State player control
+- PvP Optimisation
+- New backpack type
+- Legendary Tooltips integration
 
 ModularWarfare is a 1.12.2 Minecraft mod made for military stuff, it is content-pack based and allow you to create your guns, attachments, magazines, bullets, armors & backpacks.
 
