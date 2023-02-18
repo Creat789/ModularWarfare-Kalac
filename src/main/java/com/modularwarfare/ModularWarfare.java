@@ -160,7 +160,7 @@ public class ModularWarfare {
     public static boolean isLoadedModularMovements=false;
 
 
-    public static void loadContent() {
+    public static void loadContent(){
         Method method = null;
         try {
             method = (java.net.URLClassLoader.class).getDeclaredMethod("addURL", java.net.URL.class);
@@ -169,8 +169,9 @@ public class ModularWarfare {
             LOGGER.error("Failed to get class loader. All content loading will now fail.");
             e.printStackTrace();
         }
-        for (File file : contentPacks) {
-            if (!MODS_TABS.containsKey(file.getName())) {
+
+        for(File file : contentPacks) {
+            if(!MODS_TABS.containsKey(file.getName())) {
                 MODS_TABS.put(file.getName(), new MWTab(file.getName()));
             }
             if (zipJar.matcher(file.getName()).matches()) {

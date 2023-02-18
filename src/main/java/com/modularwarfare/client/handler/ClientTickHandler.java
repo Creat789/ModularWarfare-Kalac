@@ -11,6 +11,7 @@ import com.modularwarfare.client.hud.FlashSystem;
 import com.modularwarfare.client.model.InstantBulletRenderer;
 import com.modularwarfare.client.model.ModelGun;
 import com.modularwarfare.client.fpp.basic.renderers.RenderParameters;
+import com.modularwarfare.common.cosmetics.ItemOverlay;
 import com.modularwarfare.common.grenades.ItemGrenade;
 import com.modularwarfare.common.guns.GunType;
 import com.modularwarfare.common.guns.ItemGun;
@@ -370,6 +371,8 @@ public class ClientTickHandler extends ForgeEvent {
                 ModularWarfare.PROXY.playSound(new MWSound(player.getPosition(), "shake", 1f, 1f));
             } else if (player.getHeldItemMainhand().getItem() instanceof ItemGrenade) {
                 ModularWarfare.PROXY.playSound(new MWSound(player.getPosition(), "human.equip.extra", 1f, 1f));
+            } else if (player.getHeldItemMainhand().getItem() instanceof ItemOverlay) {
+                ModularWarfare.PROXY.playSound(new MWSound(player.getPosition(), "overlay", 1f, 1f));
             }
         }
         if (this.oldCurrentItem != player.inventory.currentItem) {

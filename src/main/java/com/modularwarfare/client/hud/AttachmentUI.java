@@ -6,6 +6,7 @@ import com.modularwarfare.client.input.KeyType;
 import com.modularwarfare.common.attachment.AttachmentPresetEnum;
 import com.modularwarfare.common.attachment.AttachmentType;
 import com.modularwarfare.common.attachment.ItemAttachment;
+import com.modularwarfare.common.cosmetics.ItemOverlay;
 import com.modularwarfare.common.cosmetics.ItemSpray;
 import com.modularwarfare.common.cosmetics.SprayType;
 import com.modularwarfare.common.guns.*;
@@ -178,6 +179,9 @@ public class AttachmentUI {
                         }
                     }
                 }
+            }
+            if (itemStack != null && itemStack.getItem() instanceof ItemOverlay) {
+                attachments.add(i);
             }
         }
         return attachments;
