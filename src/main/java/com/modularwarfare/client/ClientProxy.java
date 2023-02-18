@@ -227,18 +227,6 @@ public class ClientProxy extends CommonProxy {
             CustomNPCListener customNPCListener = new CustomNPCListener();
             MinecraftForge.EVENT_BUS.register(customNPCListener);
         }
-        if (Loader.isModLoaded("galacticraftcore")) {
-            try {
-                ClientProxy.galacticraftInterop = (GCCompatInterop) Class.forName("com.modularwarfare.client.patch.galacticraft.GCInteropImpl").asSubclass(GCCompatInterop.class).newInstance();
-                ModularWarfare.LOGGER.info("Galatic Craft has been detected! Will attempt to patch.");
-                ClientProxy.galacticraftInterop.applyFix();
-            } catch (Exception e) {
-                e.printStackTrace();
-                ClientProxy.galacticraftInterop = new GCDummyInterop();
-            }
-        } else {
-            ClientProxy.galacticraftInterop = new GCDummyInterop();
-        }
     }
 
     @Override
@@ -289,9 +277,9 @@ public class ClientProxy extends CommonProxy {
     public void setupLayers(RenderPlayer renderer) {
         MWFRenderHelper helper = new MWFRenderHelper(renderer);
         helper.getLayerRenderers().add(0, new ResetHiddenModelLayer(renderer));
-        renderer.addLayer(new RenderLayerVest(renderer, renderer.getMainModel().bipedBodyWear));
         renderer.addLayer(new RenderLayerBackpack(renderer, renderer.getMainModel().bipedBodyWear));
         renderer.addLayer(new RenderLayerBody(renderer, renderer.getMainModel().bipedBodyWear));
+
         // Disabled for animation third person test
         // renderer.addLayer(new RenderLayerHeldGun(renderer));
         renderer.addLayer(new RenderLayerHeldGun(renderer));
