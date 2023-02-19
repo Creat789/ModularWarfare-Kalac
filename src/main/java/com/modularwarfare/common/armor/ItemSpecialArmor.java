@@ -5,6 +5,7 @@ import com.modularwarfare.common.capability.extraslots.CapabilityExtra;
 import com.modularwarfare.common.capability.extraslots.IExtraItemHandler;
 import com.modularwarfare.common.type.BaseItem;
 import com.modularwarfare.common.type.BaseType;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -13,6 +14,8 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
+
+import java.util.List;
 
 public class ItemSpecialArmor extends BaseItem {
 
@@ -61,7 +64,14 @@ public class ItemSpecialArmor extends BaseItem {
             }
         }
     }
+    @Override
+    public void addInformation(ItemStack stack, World world, List<String> lines, ITooltipFlag b)
+    {
+        lines.add("\u00A71Vest");
+        if(Math.abs(type.defense) >= 0.00F)
+            lines.add("\u00a73+" + (int)((type.defense * 50)) + "% Defense");
 
+    }
     public boolean getShareTag() {
         return true;
     }

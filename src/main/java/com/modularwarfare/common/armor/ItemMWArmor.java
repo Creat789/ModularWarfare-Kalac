@@ -6,6 +6,7 @@ import com.modularwarfare.client.model.ModelCustomArmor;
 import com.modularwarfare.common.init.ModSounds;
 import com.modularwarfare.common.type.BaseType;
 import net.minecraft.client.model.ModelBiped;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
@@ -21,6 +22,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
+import java.util.List;
 
 public class ItemMWArmor extends ItemArmor implements ISpecialArmor {
     public ArmorType type;
@@ -119,5 +121,13 @@ public class ItemMWArmor extends ItemArmor implements ISpecialArmor {
         if (this.type.durability != null) {
             stack.damageItem(damage, entity);
         }
+    }
+
+    @Override
+    public void addInformation(ItemStack stack, World world, List<String> lines, ITooltipFlag b)
+    {
+        lines.add("\u00A71Armor");
+        if(Math.abs(type.defense) >= 0.00F)
+            lines.add("\u00a73+" + (int)((type.defense * 200)) + "% Defense");
     }
 }

@@ -6,6 +6,7 @@ import com.modularwarfare.client.handler.ClientTickHandler;
 import com.modularwarfare.client.fpp.basic.renderers.RenderParameters;
 import com.modularwarfare.common.ammo.ItemAmmo;
 import com.modularwarfare.common.ammo.ItemBullet;
+import com.modularwarfare.common.cosmetics.OverlayType;
 import com.modularwarfare.common.entity.decals.EntityDecal;
 import com.modularwarfare.common.guns.manager.ShotManager;
 import com.modularwarfare.common.handler.ServerTickHandler;
@@ -56,7 +57,7 @@ public class ItemGun extends BaseItem {
     public static boolean lastFireButtonHeld = false;
     public GunType type;
 
-    public ItemGun(GunType type) {
+    public ItemGun(GunType type){
         super(type);
         this.type = type;
         this.isDamageable();
@@ -64,7 +65,15 @@ public class ItemGun extends BaseItem {
         isRepairable();
         this.setMaxDamage(type.durability);
     }
-
+    @Override
+    public float getXpRepairRatio(ItemStack stack)
+    {
+        return 9F;
+    }
+    public boolean isEnchantable(ItemStack stack)
+    {
+        return false;
+    }
     /**
      * If the player is on a shoot cooldown
      *
@@ -388,7 +397,10 @@ public class ItemGun extends BaseItem {
             } else {
                 tooltip.add(String.format(damageLine, gunType.gunDamage));
             }
-
+            String cadenceLine = "%bCadence: %g%s";
+            cadenceLine = cadenceLine.replaceAll("%b", TextFormatting.BLUE.toString());
+            cadenceLine = cadenceLine.replaceAll("%g", TextFormatting.RED.toString());
+            tooltip.add(String.format(cadenceLine, decimalFormat.format(gunType.roundsPerMin)));
 
             String accuracyLine = "%bAccuracy: %g%s";
             accuracyLine = accuracyLine.replaceAll("%b", TextFormatting.BLUE.toString());
@@ -441,12 +453,14 @@ public class ItemGun extends BaseItem {
                     }
                 }
             }
-
-            if(gunType.extraLore != null) {
-                tooltip.add("" + TextFormatting.BLUE.toString() + "Lore:");
-                tooltip.add(gunType.extraLore);
-            }
         } else {
+            String overlay_internalname = GunType.getOverlay(stack);
+            if(overlay_internalname != null) {
+                if(ModularWarfare.overlayTypes.get(overlay_internalname) != null){
+                    final OverlayType overlayType = ModularWarfare.overlayTypes.get(overlay_internalname).type;
+                    tooltip.add(TextFormatting.BLUE.toString() + "Overlay: "+TextFormatting.RED+overlayType.frameTooltip);
+                }
+            }
             tooltip.add("\u00a7e" + "[Shift]");
         }
     }

@@ -72,6 +72,7 @@ public class ItemBackpack extends BaseItem {
         lines.add(TextFormatting.BLUE.toString() + "Slots: " +TextFormatting.RED+BackpackType.getFreeSlot(items) + "/" + type.size);
     }
 
+
     @Override
     public ActionResult<ItemStack> onItemRightClick(final World worldIn, final EntityPlayer playerIn, final EnumHand handIn) {
         final ItemStack itemstack = playerIn.getHeldItem(handIn);
