@@ -1,8 +1,8 @@
 {
   "general": {
     "customInventory": true,
-    "prototype_pack_extraction": true,
-    "animated_pack_extraction": true,
+    "prototype_pack_extraction": false,
+    "animated_pack_extraction": false,
     "modified_pack_server_kick": true,
     "drop_extra_slots_on_death": true
   },
@@ -32,7 +32,7 @@
     ]
   },
   "drops": {
-    "advanced_drops_models": true,
+    "advanced_drops_models": false,
     "drops_despawn_time": 120,
     "advanced_drops_models_everything": false
   },

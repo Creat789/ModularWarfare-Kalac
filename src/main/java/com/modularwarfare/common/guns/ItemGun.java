@@ -59,7 +59,10 @@ public class ItemGun extends BaseItem {
     public ItemGun(GunType type) {
         super(type);
         this.type = type;
-        this.setNoRepair();
+        this.isDamageable();
+        this.setMaxStackSize(1);
+        isRepairable();
+        this.setMaxDamage(type.durability);
     }
 
     /**

@@ -33,7 +33,10 @@ public class GunType extends BaseType {
     public WeaponScopeModeType scopeModeType = WeaponScopeModeType.SIMPLE;
 
     public WeaponAnimationType animationType = WeaponAnimationType.BASIC;
-
+    /**
+     * Weapon durability
+     */
+    public int durability = 100;
     //Munition variables
     /**
      * Damage inflicted per bullet. Multiplied by the bullet damage value.

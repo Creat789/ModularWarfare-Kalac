@@ -170,6 +170,7 @@ public class ShotManager {
         GunType gunType = itemGun.type;
         // Can fire checks
         if (ShotValidation.verifShot(entityPlayer, gunStack, itemGun, fireMode, clientFireTickDelay, recoilPitch, recoilYaw, recoilAimReducer, bulletSpread)) {
+            gunStack.damageItem(1,entityPlayer);
 
             // Weapon pre fire event
             WeaponFireEvent.PreServer preFireEvent = new WeaponFireEvent.PreServer(entityPlayer, gunStack, itemGun, gunType.weaponMaxRange);
