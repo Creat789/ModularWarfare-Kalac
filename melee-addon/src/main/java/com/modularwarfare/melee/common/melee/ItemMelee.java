@@ -27,9 +27,11 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.UUID;
 import java.util.function.Function;
 
 public class ItemMelee extends BaseItem {
+    protected static final UUID MOVEMENT_SPEED_MODIFIER = UUID.fromString("99999999-4180-4865-B01B-BCCE9785ACA3");
 
     public static final Function<MeleeType, ItemMelee> factory = type -> {
         return new ItemMelee((type));
@@ -49,13 +51,22 @@ public class ItemMelee extends BaseItem {
     }
 
     @Override
+    public Multimap<String, AttributeModifier> getAttributeModifiers(EntityEquipmentSlot slot, ItemStack stack) {
+        Multimap<String, AttributeModifier> multimap = super.getAttributeModifiers(slot, stack);
+        if (slot == EntityEquipmentSlot.MAINHAND) {
+            multimap.put(SharedMonsterAttributes.MOVEMENT_SPEED.getName(), new AttributeModifier(MOVEMENT_SPEED_MODIFIER, "MovementSpeed", type.moveSpeedModifier - 1.0f, 2));
+        }
+        return multimap;
+    }
+    @Override
     public void setType(BaseType type) {
         this.type = (MeleeType) type;
     }
 
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-
+        tooltip.add(generateLoreLine("\u00A7eValeur", String.valueOf(type.valeur)));
+        tooltip.add(generateLoreLine("Bonus Speed", String.valueOf(type.moveSpeedModifier)));
         tooltip.add(generateLoreLine("Damage", String.valueOf(type.damage)));
     }
 

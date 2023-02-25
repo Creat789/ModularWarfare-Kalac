@@ -2,12 +2,15 @@ package com.modularwarfare.common.handler;
 
 import com.modularwarfare.ModConfig;
 import com.modularwarfare.ModularWarfare;
+import com.modularwarfare.common.capability.extraslots.CapabilityExtra;
+import com.modularwarfare.common.capability.extraslots.IExtraItemHandler;
 import com.modularwarfare.common.entity.item.EntityItemLoot;
 import com.modularwarfare.common.guns.ItemGun;
 import com.modularwarfare.common.network.PacketClientKillFeedEntry;
 import com.modularwarfare.common.network.PacketExplosion;
 import com.modularwarfare.common.type.BaseItem;
 import com.modularwarfare.common.world.ModularWarfareWorldListener;
+import com.modularwarfare.melee.common.melee.ItemMelee;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
@@ -15,14 +18,19 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.EntityEquipmentSlot;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.entity.player.PlayerDropsEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.ExplosionEvent;
 import net.minecraftforge.event.world.WorldEvent;
@@ -30,6 +38,7 @@ import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Random;
 
 public class CommonEventHandler {
@@ -42,6 +51,41 @@ public class CommonEventHandler {
         return r.nextInt((max - min) + 1) + min;
     }
 
+    public void dropItemsAt(final EntityPlayer player, final List<EntityItem> drops, final Entity e) {
+        final IExtraItemHandler armors = player.getCapability(CapabilityExtra.CAPABILITY, null);
+        for (int i = 0; i < armors.getSlots(); ++i) {
+            if (armors.getStackInSlot(i) != null && !armors.getStackInSlot(i).isEmpty()) {
+                final EntityItem ei = new EntityItem(e.world, e.posX, e.posY + e.getEyeHeight(), e.posZ, armors.getStackInSlot(i).copy());
+                ei.setPickupDelay(40);
+                final float f1 = e.world.rand.nextFloat() * 0.5f;
+                final float f2 = e.world.rand.nextFloat() * 3.1415927f * 2.0f;
+                ei.motionX = -MathHelper.sin(f2) * f1;
+                ei.motionZ = MathHelper.cos(f2) * f1;
+                ei.motionY = 0.20000000298023224;
+                drops.add(ei);
+                armors.setStackInSlot(i, ItemStack.EMPTY);
+            }
+        }
+    }
+
+
+    @SubscribeEvent
+    public void onLivingDrops(LivingDropsEvent event) {
+        DamageSource source = event.getSource();
+        if (source.getTrueSource() instanceof EntityPlayer) {
+            EntityPlayer player = (EntityPlayer) source.getTrueSource();
+            Item main = player != null ? player.getHeldItemMainhand() != null ? player.getHeldItemMainhand().getItem() : null : null;
+            if (main instanceof ItemMelee) {
+                return;
+            }
+        }
+    }
+    @SubscribeEvent
+    public void playerDeath(final PlayerDropsEvent event) {
+        if (event.getEntity() instanceof EntityPlayer && !event.getEntity().world.isRemote && !event.getEntity().world.getGameRules().getBoolean("keepInventory")) {
+            this.dropItemsAt(event.getEntityPlayer(), event.getDrops(), event.getEntityPlayer());
+        }
+    }
     @SubscribeEvent
     public void onLivingDeath(final LivingDeathEvent event) {
         if (ModConfig.INSTANCE.killFeed.enableKillFeed) {

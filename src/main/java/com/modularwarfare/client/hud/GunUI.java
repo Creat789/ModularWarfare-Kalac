@@ -15,6 +15,7 @@ import com.modularwarfare.common.ammo.ItemBullet;
 import com.modularwarfare.common.attachment.AttachmentPresetEnum;
 import com.modularwarfare.common.attachment.ItemAttachment;
 import com.modularwarfare.common.guns.*;
+import com.modularwarfare.utility.CrosshairHelper;
 import com.modularwarfare.utility.RayUtil;
 import com.modularwarfare.utility.ReloadHelper;
 import com.modularwarfare.utility.RenderHelperMW;
@@ -125,32 +126,31 @@ public class GunUI {
                                                     GlStateManager.color(1.0f, 1.0f, 1.0f, 1 - alpha);
                                                     Gui.drawModalRectWithCustomSizedTexture(width / 2, height / 2, 2.0f, 2.0f, 1, 1, 16.0f, 16.0f);
                                                 } else {
-                                                    ResourceLocation overlayToRender = itemAttachment.type.sight.overlayType.resourceLocations.get(0);
+                                                        ResourceLocation overlayToRender = itemAttachment.type.sight.overlayType.resourceLocations.get(0);
 
-                                                    float factor = 1;
-                                                    if (width < 700) {
-                                                        factor = 2;
+                                                        float factor = 1;
+                                                        if (width < 700) {
+                                                            factor = 2;
+                                                        }
+                                                        int size = (32 * 2 / (int) (event.getResolution().getScaleFactor() * factor)) + ((int) (crouchSwitch) * 5);
+                                                        float scale = Math.abs(playerRecoilYaw) + Math.abs(playerRecoilPitch);
+                                                        scale *= ((ModelAttachment) itemAttachment.type.model).config.sight.factorCrossScale;
+                                                        size = (int) (((size * (1 + (scale > 0.8 ? scale : 0) * 0.2))) * ((ModelAttachment) itemAttachment.type.model).config.sight.rectileScale);
+                                                        GL11.glTranslatef((width / 2), (height / 2), 0);
+                                                        if (!itemAttachment.type.sight.plumbCrossHair) {
+                                                            GlStateManager.rotate(CROSS_ROTATE, 0, 0, 1);
+                                                        }
+                                                        GL11.glTranslatef(-size, -size, 0);
+                                                        GL11.glTranslatef((VAL2 / 10), (VAL / 10), 0);
+                                                        RenderHelperMW.renderImageAlpha(0, 0, overlayToRender, size * 2, size * 2, 1f - alpha);
                                                     }
-                                                    int size = (32 * 2 / (int) (event.getResolution().getScaleFactor() * factor)) + ((int) (crouchSwitch) * 5);
-                                                    float scale=Math.abs(playerRecoilYaw)+Math.abs(playerRecoilPitch);
-                                                    scale*=((ModelAttachment) itemAttachment.type.model).config.sight.factorCrossScale;
-                                                    size = (int) (((size * (1 + (scale > 0.8 ? scale : 0) * 0.2))) * ((ModelAttachment) itemAttachment.type.model).config.sight.rectileScale);
-                                                    GL11.glTranslatef((width / 2), (height / 2), 0);
-                                                    if(!itemAttachment.type.sight.plumbCrossHair) {
-                                                        GlStateManager.rotate(CROSS_ROTATE,0,0,1);
-                                                    }
-                                                    GL11.glTranslatef(-size, -size, 0);
-                                                    GL11.glTranslatef((VAL2 / 10), (VAL / 10), 0);
-                                                    RenderHelperMW.renderImageAlpha(0, 0, overlayToRender, size * 2, size * 2, 1f - alpha);
                                                 }
-
                                                 GL11.glPopMatrix();
                                             }
 
                                         }
                                     }
                                 }
-                            }
                         }
 
                         boolean showCrosshair = ((adsSwitch < 0.6F) && (AnimationController.ADS < 0.5F));
@@ -166,7 +166,7 @@ public class GunUI {
                         if(mc.getRenderViewEntity() != mc.player){
                             showCrosshair = false;
                         }
-                        if (ModConfig.INSTANCE.hud.enable_crosshair && !ClientRenderHooks.getAnimMachine(mc.player).attachmentMode && showCrosshair && mc.gameSettings.thirdPersonView == 0 && !mc.player.isSprinting() && !ClientRenderHooks.getAnimMachine(mc.player).reloading && mc.player.getHeldItemMainhand().getItem() instanceof ItemGun) {
+                        if (CrosshairHelper.isLoaded() == false && ModConfig.INSTANCE.hud.enable_crosshair && !ClientRenderHooks.getAnimMachine(mc.player).attachmentMode && showCrosshair && mc.gameSettings.thirdPersonView == 0 && !mc.player.isSprinting() && !ClientRenderHooks.getAnimMachine(mc.player).reloading && mc.player.getHeldItemMainhand().getItem() instanceof ItemGun) {
                             if(RenderParameters.collideFrontDistance <= 0.2f) {
                                 GlStateManager.pushMatrix();
 

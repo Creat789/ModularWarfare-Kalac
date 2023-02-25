@@ -11,6 +11,8 @@ public class MeleeType extends BaseType {
     public boolean resetAttackOnClick = false;
     public boolean destroyBlocks = false;
     public boolean swing = true;
+    public float moveSpeedModifier = 1.2F;
+    public int valeur;
 
     public MeleeType() {
         maxStackSize = 1;

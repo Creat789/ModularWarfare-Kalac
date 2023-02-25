@@ -43,7 +43,7 @@ public class GunType extends BaseType {
      */
     public float gunDamage = 0;
 
-    public float moveSpeedModifier = 1F;
+    public float moveSpeedModifier = 1.0F;
 
     /**
      * Damage inflicted per bullet. Multiplied by the bullet damage value.
