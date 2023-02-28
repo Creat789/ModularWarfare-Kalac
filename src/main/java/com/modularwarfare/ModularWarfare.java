@@ -41,6 +41,7 @@ import com.modularwarfare.common.hitbox.playerdata.PlayerDataHandler;
 import com.modularwarfare.common.network.NetworkHandler;
 import com.modularwarfare.common.parts.ItemPart;
 import com.modularwarfare.common.protector.ModularProtector;
+import com.modularwarfare.common.protector.ModularProtectorTemplate;
 import com.modularwarfare.common.textures.TextureType;
 import com.modularwarfare.common.type.BaseType;
 import com.modularwarfare.common.type.ContentTypes;
@@ -93,7 +94,8 @@ public class ModularWarfare {
     // Mod Info
     public static final String MOD_ID = "modularwarfare";
     public static final String MOD_NAME = "ModularWarfare";
-    public static final String MOD_VERSION = "0.0.3f";
+    public static final String MOD_VERSION = "0.0.4f";
+
     public static final String MOD_PREFIX = TextFormatting.GRAY+"["+TextFormatting.RED+"ModularWarfare"+TextFormatting.GRAY+"]"+TextFormatting.GRAY;
 
     // Main instance
@@ -182,7 +184,7 @@ public class ModularWarfare {
                         /** Set password */
                         if (zipFile.isEncrypted()) {
                             if (FMLCommonHandler.instance().getSide() == Side.CLIENT) {
-                                ModularWarfare.PROTECTOR.applyPassword(zipFile, file.getName());
+                                ModularWarfare.PROTECTOR.dhazkjdhakjdbcjbkajb(zipFile, file.getName());
                             } else {
                                 ModularWarfare.LOGGER.info("Can't use password protected content-pack on server-side.");
                             }
@@ -446,14 +448,37 @@ public class ModularWarfare {
     public void constructionEvent(FMLConstructionEvent event) {
         LOGGER = LogManager.getLogger(ModularWarfare.MOD_ID);
 
+        /**
+         * Loading ModularProtector
+         * Because of security reasons ModularProtectorOfficial class is not shown in the GitHub repository
+         * however ModularProtectorOfficial is in the official releases on Curseforge and obfuscated
+         *
+         * In order to still be able to build the repository from source, we give you a template called ModularProtectorTemplate
+         * that allow you to implement your own content-pack protector.
+         * Note: You will not be able to use existing official encrypted content-pack using the GitHub builds.
+         */
         if (FMLCommonHandler.instance().getSide() == Side.CLIENT) {
-            PROTECTOR = new ModularProtector();
+            Class protector_class = null;
+            try {
+                protector_class = Class.forName("com.modularwarfare.common.protector.ModularProtectorOfficial");
+                PROTECTOR = (ModularProtector) protector_class.newInstance();
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            } catch (InstantiationException e) {
+                throw new RuntimeException(e);
+            } catch (IllegalAccessException e) {
+                throw new RuntimeException(e);
+            }
+            if(protector_class == null){
+                PROTECTOR = new ModularProtectorTemplate();
+            }
+            LOGGER.info("Registered ModularProtector :"+PROTECTOR.getClass().toString());
         }
         /**
          * Create & Check Addon System
          */
 
-        this.addonDir = new File(ModUtil.getGameFolder() + "/addons");
+        this.addonDir = new File(ModUtil.getGameFolder() + "/addons_mwf");
 
         if (!this.addonDir.exists())
             this.addonDir.mkdirs();
@@ -467,7 +492,10 @@ public class ModularWarfare {
         if(ModUtil.isIDE()) {
             File file = new File(ModUtil.getGameFolder()).getParentFile().getParentFile();
             String folder = file.toString().replace("\\", "/");
-            this.loaderManager.constructDevAddons(new File(folder + "/melee-addon/build/classes/java/main"), "com.modularwarfare.melee.ModularWarfareMelee", event.getSide());
+            File meleeBuild = new File(folder + "/melee-addon/build/classes/java/main");
+            if (meleeBuild.exists()) {
+                this.loaderManager.constructDevAddons(new File(folder + "/melee-addon/build/classes/java/main"), "com.modularwarfare.melee.ModularWarfareMelee", event.getSide());
+            }
         }
 
         PROXY.construction(event);
@@ -569,6 +597,7 @@ public class ModularWarfare {
             ItemRegisterEvent itemRegisterEvent = new ItemRegisterEvent(event.getRegistry(), tabOrder);
             MinecraftForge.EVENT_BUS.post(itemRegisterEvent);
 
+
             itemRegisterEvent.tabOrder.forEach((item)->{
                 if(item instanceof ItemGun){
                     for(SkinType skin: ((ItemGun) item).type.modelSkins) {
@@ -589,7 +618,6 @@ public class ModularWarfare {
                 }
 
             });
-
             MODS_TABS.get(file.getName()).preInitialize(tabOrder);
         }
 
@@ -613,6 +641,7 @@ public class ModularWarfare {
     public static void registerRayCasting(RayCasting rayCasting){
         INSTANCE.RAY_CASTING = rayCasting;
     }
+
 
 }
 
