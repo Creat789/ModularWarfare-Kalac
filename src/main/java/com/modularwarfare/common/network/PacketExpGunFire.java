@@ -126,6 +126,8 @@ public class PacketExpGunFire extends PacketBase {
             public void run() {
                 if (entityPlayer != null) {
                     if (entityPlayer.getHeldItemMainhand() != null) {
+                        if(ModConfig.INSTANCE.gun_break)
+                            entityPlayer.getHeldItemMainhand().damageItem(1, entityPlayer);
                         if (entityPlayer.getHeldItemMainhand().getItem() instanceof ItemGun) {
 
                             if (ModularWarfare.gunTypes.get(internalname) != null) {

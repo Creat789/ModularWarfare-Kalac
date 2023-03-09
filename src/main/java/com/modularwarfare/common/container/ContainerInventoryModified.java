@@ -14,6 +14,7 @@ import com.modularwarfare.common.parts.ItemPart;
 import com.modularwarfare.common.vest.ItemVest;
 import com.modularwarfare.common.vest.VestType;
 import com.modularwarfare.utility.ModUtil;
+import fr.arkingstudio.arkaniaz.common.items.*;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
@@ -204,10 +205,11 @@ public class ContainerInventoryModified extends Container {
                                 } else if (stack.getItem() instanceof ItemFood && itemVest.type.isfoodCapsule == true || stack.getItem() instanceof ItemPotion && itemVest.type.isfoodCapsule == true){
                                     return true;
                                 }  else if (itemVest.type.ismedicalPencil == true){
-                                    /*if(stack.getItem() instanceof ItemMorphine || stack.getItem() instanceof ItemRegen || stack.getItem() instanceof ItemRegen2 || stack.getItem() instanceof ItemHeal || stack.getItem() instanceof ItemVitamin_pills || stack.getItem() instanceof  ItemPainKiller){
+                                    if(stack.getItem() instanceof ItemMorphine || stack.getItem() instanceof ItemRegen || stack.getItem() instanceof ItemRegen2 || stack.getItem() instanceof ItemHeal || stack.getItem() instanceof ItemVitamin_pills || stack.getItem() instanceof  ItemPainKiller){
                                         return true;
-                                    } else {*/
+                                    } else {
                                         return false;
+                                    }
                                 } else if (itemVest.type.isammoStorage == true){
                                     if(stack.getItem() instanceof ItemAmmo || stack.getItem() instanceof ItemBullet) {                                   return true;
                                     } else {

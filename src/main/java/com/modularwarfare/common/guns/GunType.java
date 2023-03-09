@@ -107,7 +107,7 @@ public class GunType extends BaseType {
      */
     public float accuracySneakFactor = 0.85f;
 
-    public float randomRecoilPitch = 0.6F;
+    public float randomRecoilPitch = 0.2F;
 
     /**
      * Modifier for setting the maximum yaw divergence when randomizing recoil (Recoil 2 + rndRecoil 0.5 == 1.5-2.5 Recoil range)

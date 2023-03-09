@@ -8,6 +8,7 @@ import com.modularwarfare.client.fpp.basic.configs.ArmorRenderConfig;
 import com.modularwarfare.client.fpp.basic.renderers.*;
 import com.modularwarfare.client.fpp.enhanced.animation.EnhancedStateMachine;
 import com.modularwarfare.client.fpp.enhanced.renderers.RenderGunEnhanced;
+import com.modularwarfare.client.gui.GuiInventoryModified;
 import com.modularwarfare.client.handler.ClientTickHandler;
 import com.modularwarfare.client.scope.ScopeUtils;
 import com.modularwarfare.client.model.ModelCustomArmor;
@@ -21,6 +22,7 @@ import com.modularwarfare.common.attachment.ItemAttachment;
 import com.modularwarfare.common.backpacks.ItemBackpack;
 import com.modularwarfare.common.entity.grenades.EntitySmokeGrenade;
 import com.modularwarfare.common.guns.*;
+import com.modularwarfare.common.network.BackWeaponsManager;
 import com.modularwarfare.common.type.BaseItem;
 import com.modularwarfare.common.type.BaseType;
 import com.modularwarfare.utility.OptifineHelper;
@@ -367,7 +369,6 @@ public class ClientRenderHooks extends ForgeEvent {
         if (!(event.getEntity() instanceof AbstractClientPlayer)) {
             return;
         }
-
         AbstractClientPlayer clientPlayer = (AbstractClientPlayer)event.getEntity();
         Render<AbstractClientPlayer> render = Minecraft.getMinecraft().getRenderManager().<AbstractClientPlayer>getEntityRenderObject(event.getEntity());
         RenderPlayer renderplayer = (RenderPlayer) render;

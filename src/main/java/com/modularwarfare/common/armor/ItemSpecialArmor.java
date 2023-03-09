@@ -25,7 +25,9 @@ public class ItemSpecialArmor extends BaseItem {
 
     public ItemSpecialArmor(final ArmorType type, final MWArmorType armorType) {
         super(type);
-        if (type.durability != null) {
+        if (type.durability == null) {
+            this.isDamageable();
+        } else {
             this.setMaxDamage(type.durability);
         }
         type.loadExtraValues();
