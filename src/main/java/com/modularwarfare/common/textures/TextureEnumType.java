@@ -8,6 +8,7 @@ public enum TextureEnumType {
      * enum TextureEnumType
      * FLASH, SCOPE, HANDS
      */
+    @SerializedName("suppressor") Suppressor("suppressor"),
     @SerializedName("flash") Flash("flash"),
     @SerializedName("overlay") Overlay("overlay"),
     @SerializedName("hands") Hands("hands");

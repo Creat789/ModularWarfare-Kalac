@@ -1,14 +1,15 @@
 {
   "general": {
     "customInventory": true,
-    "prototype_pack_extraction": false,
-    "animated_pack_extraction": false,
+    "prototype_pack_extraction": true,
+    "animated_pack_extraction": true,
     "modified_pack_server_kick": true,
     "drop_extra_slots_on_death": true
   },
   "shots": {
     "shot_break_glass": false,
-    "knockback_entity_damage": false
+    "knockback_entity_damage": false,
+    "maxShooterPing": 1000.0
   },
   "guns": {
     "guns_interaction_hand": true,
@@ -32,7 +33,7 @@
     ]
   },
   "drops": {
-    "advanced_drops_models": false,
+    "advanced_drops_models": true,
     "drops_despawn_time": 120,
     "advanced_drops_models_everything": false
   },
@@ -66,7 +67,8 @@
     ]
   },
   "model_optimization": true,
+  "gun_break": true,
   "debug_hits_message": false,
   "dev_mode": true,
-  "version": "0.0.4f"
+  "version": "0.0.5f"
 }

@@ -29,8 +29,14 @@ public class TextureType extends BaseType {
     public void initDefaultTextures(TextureEnumType type){
         this.textureType = type;
         switch (type){
+            case Suppressor:
+                for(int i = 0; i < 5; i++){
+                    resourceLocations.add(new ResourceLocation(ModularWarfare.MOD_ID, "textures/default/flash/mw.supp"+(i+1)+".png"));
+                }
+                break;
             case Flash:
                 for(int i = 0; i < 5; i++){
+
                     resourceLocations.add(new ResourceLocation(ModularWarfare.MOD_ID, "textures/default/flash/mw.flash"+(i+1)+".png"));
                 }
                 break;

@@ -89,8 +89,14 @@ public class EntityC4 extends EntityGrenade {
 
     @Override
     public void explode(){
-        float f = 4.0F;
-        this.world.createExplosion(this, this.posX, this.posY + (double)(this.height / 16.0F), this.posZ, 4.0F, true);
+        if (!this.world.isRemote && !exploded) {
+            this.world.createExplosion(this, this.posX, this.posY + (double)(this.height / 16.0F), this.posZ, 4.0F, true);
+            Explosion explosion = new Explosion(this.world, grenadeType.throwerVulnerable ? null : thrower, posX, posY, posZ, grenadeType.explosionPower, false, grenadeType.damageWorld);
+            explosion.doExplosionA();
+            ModularWarfare.PROXY.spawnExplosionParticle(this.world, this.posX, this.posY, this.posZ);
+        }
+        exploded = true;
+
         this.setDead();
     }
 
